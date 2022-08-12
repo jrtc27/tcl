@@ -66,6 +66,11 @@
 
 #include <ctype.h>
 #include <stdarg.h>
+#ifdef HAVE_STDINT_H
+#   include <stdint.h>
+#else
+#   include "../compat/stdint.h"
+#endif
 #ifdef NO_STDLIB_H
 #   include "../compat/stdlib.h"
 #else
@@ -111,16 +116,16 @@
  */
 
 #if !defined(INT2PTR)
-#   define INT2PTR(p) ((void *)(ptrdiff_t)(p))
+#   define INT2PTR(p) ((void *)(intptr_t)(p))
 #endif
 #if !defined(PTR2INT)
-#   define PTR2INT(p) ((ptrdiff_t)(p))
+#   define PTR2INT(p) ((intptr_t)(p))
 #endif
 #if !defined(UINT2PTR)
-#   define UINT2PTR(p) ((void *)(size_t)(p))
+#   define UINT2PTR(p) ((void *)(uintptr_t)(p))
 #endif
 #if !defined(PTR2UINT)
-#   define PTR2UINT(p) ((size_t)(p))
+#   define PTR2UINT(p) ((uintptr_t)(p))
 #endif
 
 #if defined(_WIN32) && defined(_MSC_VER)
