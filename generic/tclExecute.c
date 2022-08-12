@@ -6269,7 +6269,7 @@ TEBCresume(
 
 	TclNewObj(tmpPtr);
 	tmpPtr->internalRep.twoPtrValue.ptr1 = NULL;
-	tmpPtr->internalRep.twoPtrValue.ptr2 = (void *)iterMax;
+	tmpPtr->internalRep.twoPtrValue.ptr2 = INT2PTR(iterMax);
 	PUSH_OBJECT(tmpPtr); /* iterCounts object */
 
 	/*
@@ -6314,7 +6314,7 @@ TEBCresume(
 	     * Set the variables and jump back to run the body
 	     */
 
-	    tmpPtr->internalRep.twoPtrValue.ptr1 =(void *)(iterNum + 1);
+	    tmpPtr->internalRep.twoPtrValue.ptr1 = INT2PTR(iterNum + 1);
 
 	    listTmpDepth = numLists + 1;
 
