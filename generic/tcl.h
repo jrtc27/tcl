@@ -1010,10 +1010,7 @@ struct Tcl_HashEntry {
     union {			/* Key has one of these forms: */
 	char *oneWordValue;	/* One-word value for key. */
 	Tcl_Obj *objPtr;	/* Tcl_Obj * key value. */
-	int words[1];		/* Multiple integer words for key. The actual
-				 * size will be as large as necessary for this
-				 * table's keys. */
-	char string[1];		/* String for key. The actual size will be as
+	char bytes[1];		/* Bytes for key. The actual size will be as
 				 * large as needed to hold the key. */
     } key;			/* MUST BE LAST FIELD IN RECORD!! */
 };
@@ -2443,7 +2440,7 @@ EXTERN const char *TclZipfs_AppHook(int *argc, char ***argv);
 	((void *) (((tablePtr)->keyType == TCL_ONE_WORD_KEYS || \
 		    (tablePtr)->keyType == TCL_CUSTOM_PTR_KEYS) \
 		   ? (h)->key.oneWordValue \
-		   : (h)->key.string))
+		   : (h)->key.bytes))
 
 /*
  * Macros to use for clients to use to invoke find and create functions for
